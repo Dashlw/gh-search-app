@@ -1,7 +1,7 @@
 A search app using Create React App. 
 
-Steps to use app locally:
-- clone the app 
+Steps to run the app locally:
+- clone the app and cd into it  
 - run npm install to install dependencies 
 - start app using npm start 
 
