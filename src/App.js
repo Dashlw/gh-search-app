@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Search from './pages/Search';
+import Detail from './pages/Detail';
+import SearchContext from './context/SearchContext';
 import './App.css';
 
 function App() {
+  const search = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SearchContext.Provider value={search}>
+      <main className="App">
+        <Router>
+          <header>
+            <a href="https://github.com/" target="_blank" rel="noreferrer" className="logo">
+              <img src="ghLogo.png" alt="logo"/>
+            </a>
+          </header>
+          <Routes>
+            <Route path="/" element={<Search/>}/>
+            <Route path="/details/:id" element={<Detail/>}/>
+          </Routes>
+        </Router>
+      </main>
+    </SearchContext.Provider>
   );
 }
 

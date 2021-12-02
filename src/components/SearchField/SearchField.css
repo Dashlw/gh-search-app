@@ -1,0 +1,16 @@
+input {
+  font-size: 14px !important;
+  height: 2.5rem !important;
+  margin: 0 !important;
+}
+
+.clear:hover {
+  background-color: transparent !important;
+}
+
+@media (max-width: 320px) {
+  .dropdown-box {
+    display: flex;
+    padding-bottom: 3%;
+  }
+}
