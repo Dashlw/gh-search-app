@@ -1,4 +1,4 @@
-A search app using Create React App. 
+A Github repository search app built with Create React App
 
 Steps to run the app locally:
 - clone the app and cd into it  
