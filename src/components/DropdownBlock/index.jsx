@@ -4,7 +4,7 @@ import { Pane } from 'evergreen-ui';
 
 const Dropdowns = ({ showDropdowns, query, setLanguage, setSortParam }) => (
   <Pane
-    className="dropdown-box"
+    className={showDropdowns ? 'dropdown-box' : 'hide-box'}
     display={showDropdowns ? 'block' : 'none'}
     marginTop="1em"
     width="100%"
