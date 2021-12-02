@@ -1,3 +1,11 @@
+A Github repository search app built with Create React App
+
+Steps to run the app locally:
+- clone the app and cd into it  
+- run npm install to install dependencies 
+- start app using npm start 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
