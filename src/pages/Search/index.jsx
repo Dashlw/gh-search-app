@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Pane, Spinner } from 'evergreen-ui';
-import useSearchData from '../../hooks/useSearchData';
 import SearchResults from '../../components/SearchResults';
 import DropdownBlock from '../../components/DropdownBlock';
 import SearchField from '../../components/SearchField';
+import { SearchContext } from '../../context/SearchContext';
 import './Search.css';
 
 const Search = () => {
-  const [query, setQuery] = useState(null);
-  const { repos, error, loading, setRepos, setLanguage, setSortParam } = useSearchData(query);
+  const { loading } = useContext(SearchContext);
 
   let content;
   if (loading) content = (
@@ -16,11 +15,7 @@ const Search = () => {
       <Spinner/>
     </Pane>
   );
-  else content = <SearchResults results={repos}/>;
-
-  useEffect(() => {
-    if (repos) setRepos(repos);
-  }, [repos, setRepos]);
+  else content = <SearchResults/>;
 
   return (
     <Pane
@@ -31,17 +26,8 @@ const Search = () => {
       width="90%"
       maxWidth="550px"
     >
-      <SearchField
-        error={error}
-        query={query}
-        setQuery={setQuery}
-      />
-      <DropdownBlock
-        showDropdowns={query && !error}
-        query={query}
-        setLanguage={setLanguage}
-        setSortParam={setSortParam}
-      />
+      <SearchField/>
+      <DropdownBlock/>
       <Pane>
         {content}
       </Pane>

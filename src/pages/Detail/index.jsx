@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import SearchContext from '../../context/SearchContext';
 import { Button, ChevronLeftIcon, Icon, majorScale, Pane } from 'evergreen-ui';
 import { Link, Text } from '../../components/ui';
 import { RepoDetail } from '../../components/SearchResults';
+import { SearchContext } from '../../context/SearchContext';
 import './Detail.css';
 
 const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [repos] = useContext(SearchContext);
+  const { repos } = useContext(SearchContext);
   const [detail, setDetail] = useState();
 
   useEffect(() => {

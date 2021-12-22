@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, majorScale, Pane, TextInputField } from 'evergreen-ui';
 import './SearchField.css';
+import { SearchContext } from '../../context/SearchContext';
 
-const SearchField = ({ setQuery, error }) => {
+const SearchField = () => {
   const [inputValue, setInputValue] = useState('');
+  const { dispatch, error } = useContext(SearchContext);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setQuery(inputValue);
+        dispatch({ type: 'SET_QUERY', payload: inputValue});
+
       }}
     >
       <Pane className="search-field" display="flex">
@@ -35,10 +38,7 @@ const SearchField = ({ setQuery, error }) => {
         padding={0}
         width="fit-content"
         color="rgba(255,255,255, .5)"
-        onClick={() => {
-          localStorage.clear();
-          window.location.reload();
-        }}
+        onClick={() => window.location.reload()}
         height={majorScale(5)}
       >
         Clear Results

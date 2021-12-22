@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { majorScale, Select } from 'evergreen-ui';
-import useSearchData from '../../hooks/useSearchData';
+import { SearchContext } from '../../context/SearchContext';
 import './SelectMenu.css';
 
-const SelectMenu = ({ query, handleChange, options, defaultLabel, values, ...props }) => {
-  const { languageList } = useSearchData(query);
-  const dropdownOptions = options ? options : languageList;
+const SelectMenu = ({ handleChange, options, defaultLabel, values, ...props }) => {
+  const { languageList } = useContext(SearchContext);
+  let dropdownOptions = options ? options : languageList;
 
   return (
     <Select

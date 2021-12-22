@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Heading, Pane, UnorderedList, StarIcon } from 'evergreen-ui';
 import { ListItem, Text, Link } from '../ui';
+import { SearchContext } from '../../context/SearchContext';
 
 export const RepoDetail = ({ stars, language, ...props }) =>
   <UnorderedList
@@ -14,19 +15,20 @@ export const RepoDetail = ({ stars, language, ...props }) =>
     <ListItem listStyle="none">{`Language: ${language}`}</ListItem>
   </UnorderedList>;
 
-const SearchResults = ({ results }) => {
+const SearchResults = () => {
+  const { repos } = useContext(SearchContext);
 
   const NoMatch = () => (
-    <Heading size={700} color="rgba(255,255,255, .5)">
+    <Heading size={700} color="rgba(255,255,255, .5)" data-testid="no-match">
       No search results match...
     </Heading>
   );
 
   return (
     <Pane paddingTop="5%" display="flex" flexDirection="column" alignItems="center">
-      {results?.length === 0 ? <NoMatch/> : results?.map(result => (
+      {repos?.length === 0 ? <NoMatch/> : repos?.map(repo => (
         <Pane
-          key={result.id}
+          key={repo.id}
           border="2px solid rgba(255,255,255, .1)"
           borderRadius="4px"
           width="100%"
@@ -38,7 +40,7 @@ const SearchResults = ({ results }) => {
           padding=".3em"
         >
           <Link
-            to={`details/${result.id}`}
+            to={`details/${repo.id}`}
             fontSize="1.5em"
             textTransform="capitalize"
             textAlign="center"
@@ -46,10 +48,10 @@ const SearchResults = ({ results }) => {
             padding=".2em"
             data-testid="repo-name"
           >
-            {result.name}
+            {repo.name}
           </Link>
-          <Text textAlign="center"><em>Description: </em>{result.description}</Text>
-          <RepoDetail language={result.language} stars={result.stargazers_count}/>
+          <Text textAlign="center"><em>Description: </em>{repo.description}</Text>
+          <RepoDetail language={repo.language} stars={repo.stargazers_count}/>
         </Pane>
       ))}
     </Pane>

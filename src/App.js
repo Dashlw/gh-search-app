@@ -1,15 +1,13 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Search from './pages/Search';
 import Detail from './pages/Detail';
-import SearchContext from './context/SearchContext';
+import { SearchContextProvider } from './context/SearchContext';
 import './App.css';
 
 function App() {
-  const search = useState(null);
 
   return (
-    <SearchContext.Provider value={search}>
+    <SearchContextProvider>
       <main className="App">
         <Router>
           <header>
@@ -23,7 +21,7 @@ function App() {
           </Routes>
         </Router>
       </main>
-    </SearchContext.Provider>
+    </SearchContextProvider>
   );
 }
 
