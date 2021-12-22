@@ -1,4 +1,4 @@
-A Github repository search app built with Create React App
+A Github repository search app built with Create React App that uses Context and useReducer
 
 Steps to run the app locally:
 - clone the app and cd into it  
